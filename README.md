@@ -42,6 +42,8 @@ Link do projeto hospedado na Vercel: <https://next-crud-test.vercel.app/users>
 - **`yarn build`**: Cria uma versão de produção do projeto.
 - **`yarn start`**: Inicia o servidor de produção.
 - **`yarn lint`**: Executa a verificação de linting no código.
+- **`yarn test`**: Executa os testes end 2 end com o Playwright.
+
 
 ## Estrutura do Projeto
 
