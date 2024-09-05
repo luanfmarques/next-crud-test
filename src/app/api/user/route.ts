@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { create, edit, getAll } from "@/app/domain/user/actions";
-import { IUser } from "@/app/domain/user/types";
+import { create, edit, getAll } from "@/domain/user/actions";
+import { IUser } from "@/domain/user/types";
 import { schema } from "./schema";
 import { validateSchema } from "@/utils/validateSchema";
 import { ErrorBase } from "@/utils/ErrorHandler";

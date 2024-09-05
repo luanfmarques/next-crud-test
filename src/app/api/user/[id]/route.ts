@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { destroy, getById } from "@/app/domain/user/actions";
-import { IUser } from "@/app/domain/user/types";
+import { destroy, getById } from "@/domain/user/actions";
+import { IUser } from "@/domain/user/types";
 import { findEntity } from "@/utils/findEntity";
 
 export async function GET(
