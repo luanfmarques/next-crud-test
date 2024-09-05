@@ -15,8 +15,7 @@ test("crud", async ({ page }) => {
   await page.getByTestId("input-email").fill("emailTeste@gmail.com");
   await page.getByTestId("save-button").click();
 
-  await page.getByText("Usuário criado com sucesso.").click();
-
+  await expect(page.getByText("Usuário criado com sucesso.")).toHaveCount(1);
   await expect(page.getByText(`Nome: ${nameFinder}`)).toHaveCount(1);
 
   await page
@@ -27,7 +26,7 @@ test("crud", async ({ page }) => {
   await page.getByTestId("input-name").fill(edittedNameFinder);
   await page.getByTestId("save-button").click();
 
-  await page.getByText("Usuário editado com sucesso.").click();
+  await expect(page.getByText("Usuário editado com sucesso.")).toHaveCount(1);
   await expect(page.getByTestId(`user-${nameFinder}`)).toHaveCount(0);
   await expect(page.getByTestId(`user-${edittedNameFinder}`)).toHaveCount(1);
 
@@ -35,7 +34,7 @@ test("crud", async ({ page }) => {
     .getByTestId(`user-${edittedNameFinder}`)
     .getByTestId("delete-button")
     .click();
-  await page.getByText("Sucesso ao excluir o Usuário.").click();
 
+  await expect(page.getByText("Sucesso ao excluir o Usuário.")).toHaveCount(1);
   await expect(page.getByTestId(`user-${edittedNameFinder}`)).toHaveCount(0);
 });

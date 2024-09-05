@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js CRUD Users
 
-## Getting Started
+Um projeto de exemplo para um CRUD (Create, Read, Update, Delete) usando Next API. Este projeto utiliza várias tecnologias modernas para criar uma aplicação escalável e de alta qualidade.
 
-First, run the development server:
+Link do projeto hospedado na Vercel: <https://next-crud-test.vercel.app/users>
+
+## Tecnologias Utilizadas
+
+- **Next.js**: Framework React para construção de aplicações React com renderização do lado do servidor.
+- **Prisma**: ORM para gerenciar o banco de dados.
+- **React Hook Form**: Biblioteca para gerenciar formulários.
+- **Zod**: Biblioteca para validação de esquemas.
+- **React Query**: Biblioteca para gerenciamento de estados e dados assíncronos.
+- **Axios**: Cliente HTTP para fazer requisições.
+- **Tailwind CSS**: Framework CSS para estilização.
+- **Playwright**: Framework para testes end-to-end.
+- **React Toastify**: Biblioteca para exibição de toasts.
+
+## Instalação
+
+1. Clone o repositório:
+
+   ```bash
+   git clone https://github.com/luanfmarques/next-crud-test.git
+   ```
+
+2. Navegue até o diretório do projeto:
+
+   ```bash
+   cd next-crud-test
+   ```
+
+3. Instale as dependências:
+
+   ```bash
+   yarn install
+   ```
+
+## Scripts
+
+- **`yarn dev`**: Inicia o servidor de desenvolvimento.
+- **`yarn build`**: Cria uma versão de produção do projeto.
+- **`yarn start`**: Inicia o servidor de produção.
+- **`yarn lint`**: Executa a verificação de linting no código.
+
+## Estrutura do Projeto
+
+- **`/api`**: Contém a lógica utilizada para as rotas e métodos do backend.
+- **`/app`**: Contém as rotas da aplicação.
+- **`/components`**: Contém os componentes reutilizáveis.
+- **`/prisma`**: Contém a configuração do Prisma e o esquema do banco de dados.
+- **`/queries`**: Contém os hooks para facilitar nas requisições utilizadas no CRUD.
+- **`_tests_`**: Contém os testes end-to-end utilizando Playwright.
+
+## Configuração do Prisma
+
+1. Configure seu banco de dados no criando o arquivo `.env` baseado no `.env.example`:
+
+   ```bash
+   POSTGRES_URL="************"
+   POSTGRES_PRISMA_URL="************"
+   POSTGRES_URL_NO_SSL="************"
+   POSTGRES_URL_NON_POOLING="************"
+   POSTGRES_USER="************"
+   POSTGRES_HOST="************"
+   POSTGRES_PASSWORD="************"
+   POSTGRES_DATABASE="************"
+   ```
+
+2. Execute as migrações para configurar o banco de dados:
+
+   ```bash
+   npx prisma migrate dev --name init
+   ```
+
+## Testes
+
+Para rodar os testes end-to-end com Playwright, utilize o comando:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn test
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
