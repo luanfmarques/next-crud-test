@@ -1,40 +1,42 @@
 import { test, expect } from "@playwright/test";
 
 const nameFinder = "USERXXYYZZ12345";
-const edittedNameFinder = "USERXXYYZZ12345 edit";
+const editedNameFinder = "USERXXYYZZ12345 edit";
+const emailTest = "emailTeste@gmail.com";
 
-test("crud", async ({ page }) => {
-  await page.goto("http://localhost:3000/users");
+test.describe("Operações CRUD de usuários", () => {
+  test("deve criar, editar e excluir um usuário", async ({ page }) => {
+    // Navegar para a página de usuários
+    await page.goto("http://localhost:3000/users");
 
-  await expect(page.getByTestId(`user-${nameFinder}`)).toHaveCount(0);
+    // Verificar se o usuário não existe inicialmente
+    await expect(page.getByTestId(`user-${nameFinder}`)).toHaveCount(0);
 
-  await page.getByTestId("create-user").click();
-  await page.getByTestId("input-name").click();
-  await page.getByTestId("input-name").fill(nameFinder);
-  await page.getByTestId("input-email").click();
-  await page.getByTestId("input-email").fill("emailTeste@gmail.com");
-  await page.getByTestId("save-button").click();
+    // Criar um novo usuário
+    await page.getByTestId("create-user").click();
+    await page.getByTestId("input-name").fill(nameFinder);
+    await page.getByTestId("input-email").fill(emailTest);
+    await page.getByTestId("save-button").click();
 
-  await expect(page.getByText("Usuário criado com sucesso.")).toHaveCount(1);
-  await expect(page.getByText(`Nome: ${nameFinder}`)).toHaveCount(1);
+    // Verificar se o usuário foi criado com sucesso
+    await expect(page.getByText("Usuário criado com sucesso.")).toBeVisible();
+    await expect(page.getByText(`Nome: ${nameFinder}`)).toBeVisible();
 
-  await page
-    .getByTestId(`user-${nameFinder}`)
-    .getByTestId("edit-button")
-    .click();
-  await page.getByTestId("input-name").click();
-  await page.getByTestId("input-name").fill(edittedNameFinder);
-  await page.getByTestId("save-button").click();
+    // Editar o usuário
+    await page.getByTestId(`user-${nameFinder}`).getByTestId("edit-button").click();
+    await page.getByTestId("input-name").fill(editedNameFinder);
+    await page.getByTestId("save-button").click();
 
-  await expect(page.getByText("Usuário editado com sucesso.")).toHaveCount(1);
-  await expect(page.getByTestId(`user-${nameFinder}`)).toHaveCount(0);
-  await expect(page.getByTestId(`user-${edittedNameFinder}`)).toHaveCount(1);
+    // Verificar se o usuário foi editado com sucesso
+    await expect(page.getByText("Usuário editado com sucesso.")).toBeVisible();
+    await expect(page.getByTestId(`user-${nameFinder}`)).toHaveCount(0);
+    await expect(page.getByTestId(`user-${editedNameFinder}`)).toBeVisible();
 
-  await page
-    .getByTestId(`user-${edittedNameFinder}`)
-    .getByTestId("delete-button")
-    .click();
+    // Excluir o usuário
+    await page.getByTestId(`user-${editedNameFinder}`).getByTestId("delete-button").click();
 
-  await expect(page.getByText("Sucesso ao excluir o Usuário.")).toHaveCount(1);
-  await expect(page.getByTestId(`user-${edittedNameFinder}`)).toHaveCount(0);
+    // Verificar se o usuário foi excluído com sucesso
+    await expect(page.getByText("Sucesso ao excluir o Usuário.")).toBeVisible();
+    await expect(page.getByTestId(`user-${editedNameFinder}`)).toHaveCount(0);
+  });
 });
